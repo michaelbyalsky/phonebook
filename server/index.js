@@ -1,20 +1,16 @@
 const repl = require("repl");
-// const morganBody = require('morgan-body');
-// const bodyParser  = require('body-parser')
 
 const morgan = require('morgan')
 
 const express = require("express");
 const app = express();
 
-// morganBody(app);
-
 app.use(express.json());
 
 const cors = require('cors')
+
 app.use(cors())
 
-// app.use(morgan({format: 'POST body length in bytes :req[Content-Length]', immediate: true}))
 app.use(morgan(function (tokens, req, res) {
     return [
       tokens.method(req, res),
@@ -25,35 +21,6 @@ app.use(morgan(function (tokens, req, res) {
       JSON.stringify(req.body)
     ].join(' ')
   }))
-// app.use(bodyParser.json());
-
-
-// morgan(function (tokens, req, res) {
-//     return [
-//       tokens.method(req, res),
-//       tokens.url(req, res),
-//       tokens.status(req, res),
-//       tokens.res(req, res, 'content-length'), '-',
-//       tokens['response-time'](req, res), 'ms'
-//     ].join(' ')
-//   })
-
-
-// const unknownEndpoint = (request, response) => {
-//     response.status(404).send({ error: 'unknown endpoint' })
-//   }
-  
-// app.use(unknownEndpoint)
-
-// const requestLogger = (request, response, next) => {
-//     console.log('Method:', request.method)
-//     console.log('Path:  ', request.path)
-//     console.log('Body:  ', request.body)
-//     console.log('---')
-//     next()
-//   }
-
-//   app.use(requestLogger)
 
 
 let persons = [
@@ -84,6 +51,10 @@ app.get("/info", (req, res) => {
   res.send(`<h2>PhoneBook has info for ${length} people</h2><br>
     ${new Date()}`);
 });
+
+app.get("/api/persons", (req, res) => {
+  res.send(persons)
+})
 
 app.get("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id);

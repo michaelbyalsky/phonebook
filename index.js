@@ -113,6 +113,22 @@ app.post("/api/persons", (req, res, next) => {
     .catch(error => next(error));
 });
 
+app.put("/api/persons/:id", (req, res, next) => {
+  const body = checkGetPostBody(req, res);
+  const id = req.params.id;
+  const item = { name: body.name, number: body.number };
+  Item.findByIdAndUpdate(id, item, { new: true })
+    .then(newItem => {
+      if (newItem) {
+        console.log(newItem);
+        res.json(newItem.toJSON());
+      } else {
+        res.status(404).end();
+      }
+    })
+    .catch(error => next(error));
+});
+
 app.delete("/api/persons/:id", (req, res, next) => {
   const id = req.params.id;
   Item.findByIdAndRemove(id)

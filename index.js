@@ -1,14 +1,12 @@
-require("dotenv").config();
+// require("dotenv").config();
 const morgan = require('morgan')
 const cors = require('cors')
-const express = require("express");
+const express = require('express');
 const app = express();
 const Item = require('./models/Item');
 
 app.use(express.static('build'))
-
 app.use(express.json());
-
 
 app.use(cors())
 
@@ -22,30 +20,6 @@ app.use(morgan(function (tokens, req, res) {
       JSON.stringify(req.body)
     ].join(' ')
   }))
-
-
-// let persons = [
-//   {
-//     name: "Arto Hellas",
-//     number: "040-123456",
-//     id: 1,
-//   },
-//   {
-//     name: "Ada Lovelace",
-//     number: "39-44-5323523",
-//     id: 2,
-//   },
-//   {
-//     name: "Dan Abramov",
-//     number: "12-43-234345",
-//     id: 3,
-//   },
-//   {
-//     name: "Mary Poppendieck",
-//     number: "39-23-6423122",
-//     id: 4,
-//   },
-// ];
 
 app.get("/info", (req, res) => {
   Item.countDocuments()

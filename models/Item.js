@@ -4,6 +4,9 @@ mongoose.set("useFindAndModify", false);
 
 const url = process.env.MONGODB_URI
 
+// const { url, port } = require('./config');
+// console.log(url);
+
 console.log(`Connecting to DB ${url}...`);
 
 mongoose

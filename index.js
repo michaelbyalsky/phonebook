@@ -96,9 +96,10 @@ app.put("/api/persons/:id", (req, res, next) => {
       if (newItem) {
         console.log(newItem);
         res.json(newItem.toJSON());
-      } else {
-        res.status(404).end();
       }
+      //  else {
+      //   res.status(404).end();
+      // }
     })
     .catch(error => next(error));
 });
@@ -123,7 +124,7 @@ const errorHandler = (error, request, response, next) => {
   }
 
   if (error.name === "ValidationError") {
-    return response.status(400).send({ error: error.name });
+    return response.status(400).send({ error: error.message });
   }
 
   next(error);

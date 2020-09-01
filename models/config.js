@@ -1,8 +1,8 @@
-// config.js 
-const result = require('dotenv').config();
+// config.js
+const result = require('dotenv').config()
 if (result.error) {
-  throw result.error;
+  throw result.error
 }
-const { parsed: envs } = result;
-console.log(envs);
-module.exports = envs;
+const { parsed: envs } = result
+console.log(envs)
+module.exports = envs

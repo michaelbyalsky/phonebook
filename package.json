@@ -10,7 +10,8 @@
     "logs:prod": "heroku logs --tail",
     "start": "node index.js",
     "dev": "nodemon -r dotenv/config index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint index.js"
   },
   "keywords": [
     "example",
@@ -20,6 +21,7 @@
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
